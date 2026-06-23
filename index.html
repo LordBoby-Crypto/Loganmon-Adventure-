@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Loganmon Prototype V1</title>
-  <link rel="stylesheet" href="src/style.css" />
+  <title>Loganmon - Logan Bedroom Prototype</title>
+  <link rel="stylesheet" href="src/styles.css" />
 </head>
 <body>
-  <main id="shell">
-    <section id="game-card">
-      <canvas id="game" width="640" height="480" aria-label="Loganmon Prototype V1 game canvas"></canvas>
-      <div id="hint-bar">
-        <strong>Controls:</strong> Arrow keys/WASD move or select, Enter/Space confirm/interact, Esc backs out. In battle, use arrows + Enter.
+  <main class="page">
+    <section class="stage-card" aria-label="Logan bedroom prototype">
+      <div class="stage" id="stage">
+        <img class="room" src="assets/rooms/logans-bedroom.png" alt="Logan's bedroom" />
+        <img class="logan" src="assets/characters/logan/logan-front.png" alt="Logan standing in his bedroom" />
       </div>
     </section>
+    <section class="notes">
+      <h1>Logan Bedroom Prototype v1</h1>
+      <p>GitHub-ready folder structure. Uses real image assets in <code>assets/</code>; no single-file image embedding.</p>
+      <p>Focus only: Logan standing in Logan's bedroom.</p>
+    </section>
   </main>
-  <script src="src/main.js"></script>
 </body>
 </html>
