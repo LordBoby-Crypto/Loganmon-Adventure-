@@ -1,11 +1,10 @@
-# Logan Bedroom Prototype v2
+# Logan Bedroom v3
 
-Static GitHub-ready prototype.
+Fresh static HTML prototype focused only on Logan standing in Logan's bedroom.
 
-## Focus
-- Logan's bedroom only
-- Logan standing in the room
-- No movement or game systems
+## What changed from v2
 
-## v2 change
-Logan was too large in v1. This version uses a smaller Logan sprite layer (`assets/characters/logan/logan-front-small.png`) scaled to match the bedroom tile scale.
+- Logan is now a native 32x32 overworld-style pixel sprite.
+- He is scaled with nearest-neighbor/pixelated rendering.
+- No blurred portrait downscaling.
+- Separate HTML/CSS/assets structure, ready for GitHub Pages.
