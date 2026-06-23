@@ -3,15 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Logan Bedroom v3</title>
+  <title>Logan Bedroom v4 - Movement</title>
   <link rel="stylesheet" href="src/styles.css" />
 </head>
 <body>
   <main class="stage-wrap">
-    <section class="game-stage" aria-label="Logan standing in his bedroom">
-      <img class="room" src="assets/rooms/logans-bedroom.png" alt="Logan's bedroom" />
-      <img class="logan" src="assets/characters/logan/logan-32-front.png" alt="Logan overworld sprite" />
+    <section class="game-stage" id="gameStage" aria-label="Logan standing in his bedroom">
+      <img class="room" src="assets/rooms/logans-bedroom.png" alt="Logan's bedroom" draggable="false" />
+      <img class="logan" id="logan" src="assets/characters/logan/logan-32-front.png" alt="Logan overworld sprite" draggable="false" />
     </section>
+    <p class="controls">Move Logan with WASD or arrow keys.</p>
   </main>
+  <script src="src/main.js"></script>
 </body>
 </html>
