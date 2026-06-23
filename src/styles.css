@@ -5,6 +5,7 @@ html, body {
   display: grid;
   place-items: center;
   font-family: system-ui, sans-serif;
+  color: #dbe7f5;
 }
 
 .stage-wrap {
@@ -28,6 +29,8 @@ html, body {
   height: 576px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  user-select: none;
+  pointer-events: none;
 }
 
 .logan {
@@ -38,4 +41,13 @@ html, body {
   top: 333px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  user-select: none;
+  pointer-events: none;
+}
+
+.controls {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: #aeb9c7;
 }
