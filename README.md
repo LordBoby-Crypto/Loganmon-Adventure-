@@ -1,24 +1,11 @@
-# Logan Bedroom Prototype
+# Logan Bedroom Prototype v2
 
-Fresh restart prototype for Loganmon.
+Static GitHub-ready prototype.
 
-Scope:
+## Focus
 - Logan's bedroom only
 - Logan standing in the room
-- No movement, menus, battle system, or other gameplay yet
+- No movement or game systems
 
-## Run locally
-Open `index.html` in a browser.
-
-## GitHub Pages
-This folder is ready to upload to a GitHub repository. GitHub Pages can serve it directly because it is static HTML/CSS/assets.
-
-## Project structure
-
-```text
-index.html
-src/styles.css
-assets/rooms/logans-bedroom.png
-assets/characters/logan/logan-front.png
-assets/characters/logan/logan-sprite-sheet.png
-```
+## v2 change
+Logan was too large in v1. This version uses a smaller Logan sprite layer (`assets/characters/logan/logan-front-small.png`) scaled to match the bedroom tile scale.
