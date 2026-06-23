@@ -1,102 +1,41 @@
-:root {
-  --scale: 4;
-  --room-w: 192px;
-  --room-h: 137px;
-  --stage-w: calc(var(--room-w) * var(--scale));
-  --stage-h: calc(var(--room-h) * var(--scale));
-  --bg: #171a1f;
-  --card: #222832;
-  --text: #f4f4f4;
-  --muted: #b7c0cd;
-}
-
-* { box-sizing: border-box; }
-
 html, body {
   margin: 0;
   min-height: 100%;
-  background: radial-gradient(circle at top, #2c3441, var(--bg));
-  color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.page {
-  min-height: 100vh;
+  background: #1d2530;
   display: grid;
   place-items: center;
-  gap: 18px;
-  padding: 24px;
+  font-family: system-ui, sans-serif;
 }
 
-.stage-card {
-  background: var(--card);
-  border: 1px solid #3a4556;
-  border-radius: 14px;
-  padding: 14px;
-  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+.stage-wrap {
+  padding: 20px;
 }
 
-.stage {
+.game-stage {
   position: relative;
-  width: var(--stage-w);
-  height: var(--stage-h);
-  overflow: hidden;
+  width: 864px;
+  height: 576px;
   background: #000;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  border: 1px solid #536172;
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+  overflow: hidden;
 }
 
 .room {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 864px;
+  height: 576px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  user-select: none;
-  pointer-events: none;
 }
 
 .logan {
   position: absolute;
-  /* Source room is 192x137. These are source-pixel coordinates multiplied by 4. */
-  left: calc(98px * var(--scale));
-  top: calc(78px * var(--scale));
-  width: calc(16px * var(--scale));
-  height: calc(22px * var(--scale));
+  width: 96px;
+  height: 96px;
+  left: 480px;
+  top: 333px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  user-select: none;
-  pointer-events: none;
-  filter: drop-shadow(0 2px 0 rgba(0,0,0,.22));
-}
-
-.notes {
-  width: min(var(--stage-w), 92vw);
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.notes h1 {
-  margin: 0 0 6px;
-  color: var(--text);
-  font-size: 20px;
-}
-
-code {
-  color: #d7ffbd;
-  background: rgba(255,255,255,.08);
-  padding: 2px 5px;
-  border-radius: 4px;
-}
-
-@media (max-width: 850px) {
-  :root { --scale: 3; }
-}
-
-@media (max-width: 620px) {
-  :root { --scale: 2; }
-  .page { padding: 12px; }
-  .stage-card { padding: 8px; }
 }
