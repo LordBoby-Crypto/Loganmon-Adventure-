@@ -1,24 +1,14 @@
-# Logan Bedroom v6 - Reachable PC and Stairs
-
-Static HTML prototype focused only on Logan moving inside Logan's bedroom.
+# Logan House v7
 
 ## Controls
 
 - WASD or arrow keys to move.
-- E or Enter to interact.
+- E or Enter to interact/use stairs.
 - Esc to close menus.
 
-## New in v6
+## New in v7
 
-- Collision has been simplified so Logan can reach the PC and stairs.
-- PC interaction zone is larger and easier to trigger.
-- Stair interaction zone is larger and easier to trigger.
-- PC menu includes:
-  - Logan's PC: Store or withdraw items.
-  - Someone's PC: Access Pokémon Storage Boxes to deposit, withdraw, or swap team members.
-
-## Scope
-
-- Logan's bedroom only.
-- No downstairs yet.
-- No actual item or Loganmon storage system yet; only the PC menu.
+- Added downstairs room from the supplied DownStairs.png.
+- E/Enter at the bedroom stairs sends Logan downstairs.
+- E/Enter at the downstairs stairs sends Logan back to the bedroom.
+- PC menu remains in Logan's bedroom.
