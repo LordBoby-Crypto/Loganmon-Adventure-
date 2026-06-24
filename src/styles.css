@@ -8,14 +8,10 @@ html, body {
   color: #dbe7f5;
 }
 
-.stage-wrap {
-  padding: 20px;
-}
+.stage-wrap { padding: 20px; }
 
 .game-stage {
   position: relative;
-  width: 864px;
-  height: 576px;
   background: #000;
   border: 1px solid #536172;
   box-shadow: 0 18px 60px rgba(0,0,0,.45);
@@ -25,8 +21,6 @@ html, body {
 .room {
   position: absolute;
   inset: 0;
-  width: 864px;
-  height: 576px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   user-select: none;
@@ -37,8 +31,6 @@ html, body {
   position: absolute;
   width: 96px;
   height: 96px;
-  left: 480px;
-  top: 333px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   user-select: none;
@@ -48,9 +40,9 @@ html, body {
 
 .dialog {
   position: absolute;
-  left: 64px;
-  right: 64px;
-  bottom: 28px;
+  left: 36px;
+  right: 36px;
+  bottom: 24px;
   padding: 16px;
   background: #f8f8f8;
   color: #20242a;
@@ -60,9 +52,7 @@ html, body {
   font-family: "Courier New", monospace;
 }
 
-.dialog.hidden {
-  display: none;
-}
+.dialog.hidden { display: none; }
 
 .dialog-title {
   font-weight: 800;
@@ -82,25 +72,10 @@ html, body {
   font: inherit;
 }
 
-.menu-option strong {
-  display: block;
-  font-size: 16px;
-}
-
-.menu-option span {
-  display: block;
-  margin-top: 3px;
-  font-size: 13px;
-}
-
-.menu-option.selected {
-  border-color: #20242a;
-  background: #e9f6ff;
-}
-
-.menu-option.selected::before {
-  content: "▶ ";
-}
+.menu-option strong, .menu-option span { display: block; }
+.menu-option span { margin-top: 3px; font-size: 13px; }
+.menu-option.selected { border-color: #20242a; background: #e9f6ff; }
+.menu-option.selected::before { content: "▶ "; }
 
 .dialog-hint {
   margin: 10px 0 0;
