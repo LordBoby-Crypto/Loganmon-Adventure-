@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Logan Bedroom v4 - Movement</title>
+  <title>Logan Bedroom v5 - PC Interaction</title>
   <link rel="stylesheet" href="src/styles.css" />
 </head>
 <body>
@@ -11,9 +11,24 @@
     <section class="game-stage" id="gameStage" aria-label="Logan standing in his bedroom">
       <img class="room" src="assets/rooms/logans-bedroom.png" alt="Logan's bedroom" draggable="false" />
       <img class="logan" id="logan" src="assets/characters/logan/logan-32-front.png" alt="Logan overworld sprite" draggable="false" />
+
+      <div class="dialog hidden" id="dialog" role="dialog" aria-live="polite">
+        <div class="dialog-title">PC</div>
+        <button class="menu-option selected" id="optionLogan">
+          <strong>Logan's PC</strong>
+          <span>Store or withdraw items.</span>
+        </button>
+        <button class="menu-option" id="optionSomeone">
+          <strong>Someone's PC</strong>
+          <span>Access Pokémon Storage Boxes to deposit, withdraw, or swap team members.</span>
+        </button>
+        <p class="dialog-hint">Press E/Enter to select. Press Esc to close.</p>
+      </div>
     </section>
-    <p class="controls">Move Logan with WASD or arrow keys.</p>
+
+    <p class="controls">Move with WASD/arrow keys. Interact with E or Enter.</p>
   </main>
+
   <script src="src/main.js"></script>
 </body>
 </html>
