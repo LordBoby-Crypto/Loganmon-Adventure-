@@ -1,4 +1,4 @@
-# Logan Bedroom v5 - PC Interaction
+# Logan Bedroom v6 - Reachable PC and Stairs
 
 Static HTML prototype focused only on Logan moving inside Logan's bedroom.
 
@@ -8,11 +8,12 @@ Static HTML prototype focused only on Logan moving inside Logan's bedroom.
 - E or Enter to interact.
 - Esc to close menus.
 
-## New in v5
+## New in v6
 
-- Logan can reach the blue PC area.
-- Logan can reach the stairs.
-- Interacting with the PC opens:
+- Collision has been simplified so Logan can reach the PC and stairs.
+- PC interaction zone is larger and easier to trigger.
+- Stair interaction zone is larger and easier to trigger.
+- PC menu includes:
   - Logan's PC: Store or withdraw items.
   - Someone's PC: Access Pokémon Storage Boxes to deposit, withdraw, or swap team members.
 
