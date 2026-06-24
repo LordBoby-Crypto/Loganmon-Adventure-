@@ -10,53 +10,45 @@
 
   let menuOpen = false;
   let menuIndex = 0;
+  let menuMode = "pc";
   const menuButtons = [optionLogan, optionSomeone];
 
   /*
-    Collision rectangles are screen coordinates for the displayed 864x576 scene.
-    I loosened the PC/desk area and stairs so Logan can reach:
-    - the blue PC chair/terminal area
-    - the staircase landing
+    v6 collision rule:
+    Do NOT try to perfectly trace every object yet.
+    Only block the obvious furniture and room bounds.
+    The PC and stairs are deliberately reachable now.
   */
   const solids = [
-    // top wall strip
-    { x: 0, y: 0, w: 864, h: 98 },
-
-    // upper-left desk/table, but leave lower blue-PC access open
-    { x: 0, y: 98, w: 154, h: 82 },
-    { x: 0, y: 180, w: 70, h: 46 },
-
-    // drawer/bookshelf block left of main shelves
-    { x: 158, y: 96, w: 170, h: 120 },
-
-    // central bookcase
-    { x: 330, y: 78, w: 200, h: 142 },
-
-    // top-right long counter
-    { x: 530, y: 133, w: 334, h: 62 },
-
-    // stair rail/platform, leaving open path on lower/right side
-    { x: 632, y: 196, w: 96, h: 62 },
-    { x: 708, y: 176, w: 72, h: 82 },
-
-    // bed
-    { x: 78, y: 344, w: 176, h: 128 },
-
-    // central PC/table on rug
-    { x: 394, y: 278, w: 120, h: 86 },
-
-    // room bounds
+    // room edges
+    { x: 0, y: 0, w: 864, h: 88 },
     { x: 0, y: 548, w: 864, h: 28 },
     { x: 0, y: 0, w: 32, h: 576 },
-    { x: 832, y: 0, w: 32, h: 576 }
+    { x: 832, y: 0, w: 32, h: 576 },
+
+    // bed
+    { x: 72, y: 338, w: 184, h: 132 },
+
+    // top-left desk/cabinet, but PC chair area is open
+    { x: 42, y: 96, w: 120, h: 74 },
+
+    // yellow drawer and shelf blocks
+    { x: 166, y: 100, w: 150, h: 118 },
+    { x: 334, y: 88, w: 202, h: 126 },
+
+    // long upper-right counter only
+    { x: 536, y: 132, w: 296, h: 60 },
+
+    // center chair/computer on rug
+    { x: 398, y: 286, w: 118, h: 78 }
   ];
 
-  // Zones where E/Enter can open interactions.
-  const pcZone = { x: 52, y: 178, w: 95, h: 70 };
-  const stairZone = { x: 724, y: 190, w: 96, h: 96 };
+  // Bigger zones so you can interact by standing near the object, not perfectly on it.
+  const pcZone = { x: 32, y: 164, w: 140, h: 112 };
+  const stairZone = { x: 616, y: 166, w: 218, h: 148 };
 
   function feetBoxAt(x, y) {
-    return { x: x + 32, y: y + 66, w: 32, h: 24 };
+    return { x: x + 34, y: y + 68, w: 28, h: 20 };
   }
 
   function intersects(a, b) {
@@ -89,10 +81,50 @@
     menuButtons.forEach((button, i) => button.classList.toggle("selected", i === menuIndex));
   }
 
+  function resetPcMenuHtml() {
+    dialog.innerHTML = `
+      <div class="dialog-title">PC</div>
+      <button class="menu-option selected" id="optionLogan">
+        <strong>Logan's PC</strong>
+        <span>Store or withdraw items.</span>
+      </button>
+      <button class="menu-option" id="optionSomeone">
+        <strong>Someone's PC</strong>
+        <span>Access Pokémon Storage Boxes to deposit, withdraw, or swap team members.</span>
+      </button>
+      <p class="dialog-hint">Press E/Enter to select. Press Esc to close.</p>
+    `;
+    menuButtons[0] = document.getElementById("optionLogan");
+    menuButtons[1] = document.getElementById("optionSomeone");
+
+    menuButtons[0].addEventListener("click", () => {
+      setMenuSelection(0);
+      selectMenuOption();
+    });
+
+    menuButtons[1].addEventListener("click", () => {
+      setMenuSelection(1);
+      selectMenuOption();
+    });
+  }
+
   function openPcMenu() {
+    menuMode = "pc";
     menuOpen = true;
+    resetPcMenuHtml();
     dialog.classList.remove("hidden");
     setMenuSelection(0);
+  }
+
+  function openMessage(title, body) {
+    menuMode = "message";
+    menuOpen = true;
+    dialog.classList.remove("hidden");
+    dialog.innerHTML = `
+      <div class="dialog-title">${title}</div>
+      <p>${body}</p>
+      <p class="dialog-hint">Press Esc, E, or Enter to close.</p>
+    `;
   }
 
   function closeMenu() {
@@ -105,11 +137,7 @@
       ? "Logan's PC selected: item storage will be built later."
       : "Someone's PC selected: Loganmon storage boxes will be built later.";
 
-    dialog.innerHTML = `
-      <div class="dialog-title">${menuIndex === 0 ? "Logan's PC" : "Someone's PC"}</div>
-      <p>${message}</p>
-      <p class="dialog-hint">Press Esc, E, or Enter to close.</p>
-    `;
+    openMessage(menuIndex === 0 ? "Logan's PC" : "Someone's PC", message);
   }
 
   function interact() {
@@ -119,13 +147,8 @@
     }
 
     if (near(stairZone)) {
-      menuOpen = true;
-      dialog.classList.remove("hidden");
-      dialog.innerHTML = `
-        <div class="dialog-title">Stairs</div>
-        <p>The stairs will lead downstairs once the next room is built.</p>
-        <p class="dialog-hint">Press Esc, E, or Enter to close.</p>
-      `;
+      openMessage("Stairs", "The stairs will lead downstairs once the next room is built.");
+      return;
     }
   }
 
@@ -175,13 +198,13 @@
         return;
       }
 
-      if (key === "arrowup" || key === "w") {
+      if (menuMode === "pc" && (key === "arrowup" || key === "w")) {
         event.preventDefault();
         setMenuSelection(Math.max(0, menuIndex - 1));
         return;
       }
 
-      if (key === "arrowdown" || key === "s") {
+      if (menuMode === "pc" && (key === "arrowdown" || key === "s")) {
         event.preventDefault();
         setMenuSelection(Math.min(menuButtons.length - 1, menuIndex + 1));
         return;
@@ -189,7 +212,7 @@
 
       if (key === "enter" || key === "e") {
         event.preventDefault();
-        if (dialog.querySelector(".menu-option")) selectMenuOption();
+        if (menuMode === "pc") selectMenuOption();
         else closeMenu();
         return;
       }
@@ -211,16 +234,6 @@
 
   window.addEventListener("keyup", event => {
     keys.delete(event.key.toLowerCase());
-  });
-
-  optionLogan.addEventListener("click", () => {
-    setMenuSelection(0);
-    selectMenuOption();
-  });
-
-  optionSomeone.addEventListener("click", () => {
-    setMenuSelection(1);
-    selectMenuOption();
   });
 
   update();
